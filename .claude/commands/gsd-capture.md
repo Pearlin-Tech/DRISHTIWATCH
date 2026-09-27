@@ -38,13 +38,13 @@ Mode routing:
 </routing>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/add-todo.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/note.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/add-backlog.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/plant-seed.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/check-todos.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/list-seeds.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ui-brand.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/add-todo.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/note.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/add-backlog.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/plant-seed.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/check-todos.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/list-seeds.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ui-brand.md
 </execution_context>
 
 <context>

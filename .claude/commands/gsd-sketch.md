@@ -30,13 +30,13 @@ Does not require prior new-project setup — auto-creates `.planning/sketches/` 
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/sketch.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/sketch-wrap-up.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ui-brand.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/sketch-theme-system.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/sketch-interactivity.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/sketch-tooling.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/sketch-variant-patterns.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/sketch.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/sketch-wrap-up.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ui-brand.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/sketch-theme-system.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/sketch-interactivity.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/sketch-tooling.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/sketch-variant-patterns.md
 </execution_context>
 
 

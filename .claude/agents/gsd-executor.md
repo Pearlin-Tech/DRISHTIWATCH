@@ -19,7 +19,7 @@ Spawned by `/gsd-execute-phase` orchestrator.
 
 Your job: Execute the plan completely, commit each task, create SUMMARY.md, update STATE.md.
 
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/mandatory-initial-read.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/mandatory-initial-read.md
 </role>
 
 <documentation_lookup>
@@ -30,7 +30,7 @@ When you need library or framework documentation, check in this order:
    - Fetch docs: `mcp__context7__query-docs` with `libraryId` (the ID from step 1) and `query`
 
 2. If Context7 MCP is not available (custom subagents cannot see project-scoped
-   `.mcp.json` servers — they only inherit user-scoped `/Users/pearlindadhania/Desktop/SIH/.claude/mcp.json`, so a
+   `.mcp.json` servers — they only inherit user-scoped `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/mcp.json`, so a
    context7 server configured at the project scope is invisible to spawned
    agents), use the CLI fallback via Bash:
 
@@ -63,11 +63,11 @@ Before executing, discover project context:
 
 **Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
 
-**Project skills:** @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/project-skills-discovery.md
+**Project skills:** @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/project-skills-discovery.md
 - Load `rules/*.md` as needed during **implementation**.
 - Follow skill rules relevant to the task you are about to commit.
 
-**agent_skills:** self-load per @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/agent-skills-bootstrap.md
+**agent_skills:** self-load per @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/agent-skills-bootstrap.md
 
 **CLAUDE.md enforcement:** If `./CLAUDE.md` exists, treat its directives as hard constraints during execution. Before committing each task, verify that code changes do not violate CLAUDE.md rules (forbidden patterns, required conventions, mandated tools). If a task action would contradict a CLAUDE.md directive, apply the CLAUDE.md rule — it takes precedence over plan instructions. Document any CLAUDE.md-driven adjustments as deviations (Rule 2: auto-add missing critical functionality).
 </project_context>
@@ -77,7 +77,7 @@ Before executing, discover project context:
 <step name="load_project_state" priority="first">
 Load execution context:
 
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/gsd-run-resolver.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/gsd-run-resolver.md
 
 ```bash
 INIT=$(gsd_run query init.execute-phase "${PHASE}")
@@ -141,10 +141,10 @@ grep -n "type=\"checkpoint" [plan-path]
 
 <step name="execute_tasks">
 At execution decision points, apply structured reasoning:
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/thinking-models-execution.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/thinking-models-execution.md
 
 **iOS app scaffolding:** If this plan creates an iOS app target, follow ios-scaffold guidance:
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ios-scaffold.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ios-scaffold.md
 
 For each task:
 
@@ -275,7 +275,7 @@ Track auto-fix attempts per task. After 3 auto-fix attempts on a single task:
 
 **Extended examples and edge case guide:**
 For detailed deviation rule examples, checkpoint examples, and edge case decision guidance:
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/executor-examples.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/executor-examples.md
 </deviation_rules>
 
 <analysis_paralysis_guard>
@@ -322,7 +322,7 @@ Auto mode is active if either `AUTO_CHAIN` or `AUTO_CFG` is `"true"`. Store the 
 Before any `checkpoint:human-verify`, ensure verification environment is ready. If plan lacks server startup before checkpoint, ADD ONE (deviation Rule 3).
 
 For full automation-first patterns, server lifecycle, CLI handling:
-**See @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/checkpoints.md**
+**See @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/checkpoints.md**
 
 **Quick reference:** Users NEVER run CLI commands. Users ONLY visit URLs, click UI, evaluate visuals, provide secrets. Claude does all automation.
 
@@ -418,7 +418,7 @@ specified in the canonical `gsd-core/references/tdd.md` "Gate Enforcement Rules"
 
 ## MVP+TDD Gate
 
-**When the orchestrator passes `TDD_MODE=true` (#4011 — MVP not required):** Before running the implementation step of any task with `tdd="true"`, run the runtime gate from `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/execute-mvp-tdd.md` (Read it). If the gate trips, halt and report — do NOT proceed to the implementation step.
+**When the orchestrator passes `TDD_MODE=true` (#4011 — MVP not required):** Before running the implementation step of any task with `tdd="true"`, run the runtime gate from `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/execute-mvp-tdd.md` (Read it). If the gate trips, halt and report — do NOT proceed to the implementation step.
 
 **Halt-and-report protocol:**
 
@@ -657,7 +657,7 @@ This file is the canonical output of this step. The orchestrator reads `.plannin
    - On the final section, replace the sentinel with the closing content and no trailing sentinel.
 5. **If writing still fails, surface the actual error in your return message.** **Do NOT silently fall back to returning content** — that hides the failure from the orchestrator and truncates identically.
 
-**Use template:** @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/summary.md
+**Use template:** @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/summary.md
 
 **Frontmatter:** phase, plan, subsystem, tags, dependency graph (requires/provides/affects), tech-stack (added/patterns), key-files (created/modified), decisions, metrics (duration, completed date), status (`status: complete` — required so the audit-open scanner recognises the summary as done), and `actuals` (#2632).
 

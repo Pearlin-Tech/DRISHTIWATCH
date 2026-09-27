@@ -30,10 +30,10 @@ Mode routing:
 </routing>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/new-workspace.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/list-workspaces.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/remove-workspace.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ui-brand.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/new-workspace.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/list-workspaces.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/remove-workspace.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ui-brand.md
 </execution_context>
 
 <context>

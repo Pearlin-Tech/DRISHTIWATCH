@@ -19,9 +19,9 @@ Spawned by `discuss-phase-assumptions` via `Task()`. You do NOT present output d
 - Flag topics where codebase analysis alone is insufficient (needs external research)
 </role>
 
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/untrusted-input-boundary.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/untrusted-input-boundary.md
 
-**agent_skills:** self-load per @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/agent-skills-bootstrap.md
+**agent_skills:** self-load per @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/agent-skills-bootstrap.md
 
 <input>
 Agent receives via prompt:

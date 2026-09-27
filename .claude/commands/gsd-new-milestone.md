@@ -27,11 +27,11 @@ Brownfield equivalent of new-project. Project exists, PROJECT.md has history. Ga
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/new-milestone.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/questioning.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ui-brand.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/project.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/requirements.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/new-milestone.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/questioning.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ui-brand.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/project.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/requirements.md
 </execution_context>
 
 <context>
