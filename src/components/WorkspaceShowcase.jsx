@@ -23,7 +23,7 @@ export default function WorkspaceShowcase() {
     <section className="workspace-section" ref={containerRef}>
       <div className="workspace-header mb-12">
         <div className="text-xs font-mono text-blue-accent mb-4">WORKSPACE · PREVIEW</div>
-        <h2 className="accuracy-title">THE SATQUERY WORKSPACE</h2>
+        <h2 className="accuracy-title">THE DRISHTIWATCH WORKSPACE</h2>
         <p className="step-desc mt-4">A complete environment designed for analysts, researchers and operators to manage and generate high-fidelity spatial intelligence.</p>
       </div>
 
@@ -32,7 +32,7 @@ export default function WorkspaceShowcase() {
         style={{ scale, opacity }}
       >
         <div className="workspace-topbar">
-          <div className="ws-brand">SATQUERY <span className="text-blue-accent text-xs">AI</span></div>
+          <div className="ws-brand">DRISHTIWATCH <span className="text-blue-accent text-xs">AI</span></div>
           <div className="ws-search glass-panel">
             <Search size={16} />
             <span>Ahmedabad, India</span>

@@ -16,7 +16,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <span className="indicator"></span>
-          SATQUERY AI · ACTIVE MONITORING GRID
+          DRISHTIWATCH AI · ACTIVE MONITORING GRID
         </motion.div>
         
         <motion.h1 
@@ -48,7 +48,7 @@ export default function Hero() {
             START EXPLORING <ArrowRight size={16} className="ml-2" />
           </button>
           <button className="btn-secondary" onClick={() => navigate('/ask')}>
-            ASK SATQUERY <Sparkles size={16} className="ml-2" />
+            ASK DRISHTIWATCH <Sparkles size={16} className="ml-2" />
           </button>
         </motion.div>
       </div>

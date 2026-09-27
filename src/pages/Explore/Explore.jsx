@@ -295,8 +295,24 @@ export default function Explore() {
         onMouseLeave={() => setIsNavExpanded(false)}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
-        <div className="nav-rail-header">
-          <div className="brand-sat">SQ</div>
+        <div className="nav-rail-header" onClick={() => navigate('/')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: isNavExpanded ? 'flex-start' : 'center', paddingLeft: isNavExpanded ? '20px' : '0' }}>
+          <div className="brand-sat flex items-center justify-center">
+            <Eye size={20} className="text-accent-blue" />
+          </div>
+          <AnimatePresence>
+            {isNavExpanded && (
+              <motion.div
+                className="ml-2 flex flex-col items-start justify-center leading-none"
+                initial={{ opacity: 0, x: -10, width: 0 }}
+                animate={{ opacity: 1, x: 0, width: 'auto' }}
+                exit={{ opacity: 0, x: -10, width: 0 }}
+                style={{ overflow: 'hidden', whiteSpace: 'nowrap', marginTop: '2px' }}
+              >
+                <span style={{ fontFamily: 'monospace', fontWeight: 900, color: 'var(--accent-blue)', letterSpacing: '2px', fontSize: '14px' }}>DRISHTI</span>
+                <span style={{ fontFamily: 'monospace', fontWeight: 300, color: '#9ca3af', letterSpacing: '6.5px', fontSize: '9px', marginTop: '2px', paddingLeft: '1px' }}>WATCH</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         
         <div className="nav-rail-links">
@@ -435,7 +451,7 @@ export default function Explore() {
               <button className="btn-primary w-full justify-center mb-2" onClick={() => {
                 navigate('/ask', { state: { coords: markerCoords, layer: activeLayer } });
               }}>
-                ASK SATQUERY <Sparkles size={14} className="ml-2" />
+                ASK DRISHTIWATCH <Sparkles size={14} className="ml-2" />
               </button>
               <div className="flex gap-2">
                 <button 
@@ -468,7 +484,7 @@ export default function Explore() {
             <button className="close-btn" onClick={() => setAiPanelOpen(false)}>×</button>
             <div className="ai-header flex items-center mb-4">
               <Sparkles size={16} className="text-accent-blue mr-2" />
-              <span className="font-mono text-xs font-bold">SATQUERY AI</span>
+              <span className="font-mono text-xs font-bold">DRISHTIWATCH AI</span>
             </div>
             <p className="text-sm text-gray mb-4">What would you like to know about this area?</p>
             
@@ -515,7 +531,7 @@ export default function Explore() {
           className="floating-ai-btn btn-primary"
           onClick={() => setAiPanelOpen(true)}
         >
-          <Sparkles size={16} className="mr-2" /> ASK SATQUERY
+          <Sparkles size={16} className="mr-2" /> ASK DRISHTIWATCH
         </button>
       )}
 
