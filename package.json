@@ -12,12 +12,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.5.2",
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "framer-motion": "^13.4.4",
     "google-auth-library": "^11.1.0",
     "lucide-react": "^1.48.0",
+    "mapbox-gl-draw-rectangle-mode": "^1.0.4",
     "maplibre-gl": "^6.11.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

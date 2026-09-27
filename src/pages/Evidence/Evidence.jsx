@@ -40,10 +40,10 @@ export default function Evidence() {
   };
 
   return (
-    <div className="evidence-container">
+    <div className="evidence-page-container">
       <AppNavigation />
       
-      <div className="evidence-main-content">
+      <div className="evidence-page-content">
         
         {/* NEW HEADER BAR */}
         <div className="flex flex-wrap justify-between items-center mb-8 gap-4">
