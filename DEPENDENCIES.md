@@ -15,6 +15,7 @@ This file documents the dependencies used in the SATQUERY AI (DRISHTIWATCH) proj
 | `framer-motion` | ^13.4.4 | Animation library |
 | `lucide-react` | ^1.48.0 | SVG icons |
 | `maplibre-gl` | ^6.11.2 | Map rendering engine |
+| `recharts` | ^3.10.1 | Data visualization and charts |
 
 ## 3. Backend dependencies
 | Package | Version | Purpose |
@@ -22,8 +23,10 @@ This file documents the dependencies used in the SATQUERY AI (DRISHTIWATCH) proj
 | `express` | ^5.2.1 | Local backend server |
 | `cors` | ^2.8.6 | CORS middleware |
 | `body-parser` | ^2.3.0 | JSON payload parsing |
-| `sqlite3` | ^5.1.7 | SQLite local database driver |
+| `sqlite3` | ^6.0.1 | SQLite local database driver |
 | `google-auth-library` | ^11.1.0 | Server-side authentication |
+| `@google/earthengine` | ^1.7.45 | Earth Engine Node.js client |
+| `dotenv` | ^18.0.4 | Environment variable loader |
 
 ## 4. Mapping
 - **Engine**: MapLibre GL JS (`maplibre-gl`)
@@ -42,7 +45,7 @@ This file documents the dependencies used in the SATQUERY AI (DRISHTIWATCH) proj
 - **SQLite3**: Used by the local Express server for offline persistence (Reports, Evidence, Settings, Watches).
 
 ## 9. Visualization
-- Custom CSS layouts/grid metrics. Chart libraries can be added as needed.
+- **Recharts**: Used for complex data visualization such as NDVI distribution graphs. Custom CSS layouts/grid metrics are used for simpler data.
 
 ## 10. Animation
 - **Framer Motion**: Smooth entry/exit and micro-animations for UI elements.
@@ -62,7 +65,9 @@ This file documents the dependencies used in the SATQUERY AI (DRISHTIWATCH) proj
 See `.env.example` for details. Variables used:
 - `VITE_API_URL` (Client) - Points to the local API server (default: `http://localhost:3001`).
 - `PORT` (Server) - Port for the backend.
-- `EE_PRIVATE_KEY` (Server) - Earth Engine / Google Cloud credentials (Do NOT commit).
+- `EARTH_ENGINE_PROJECT_ID` (Server) - Google Cloud Project ID.
+- `EARTH_ENGINE_CLIENT_EMAIL` (Server) - Service Account Email.
+- `EARTH_ENGINE_PRIVATE_KEY` (Server) - Service Account Private Key (Do NOT commit).
 
 ## 14. External services
 - **Google Earth Engine**: Optional. Required for advanced satellite analysis.

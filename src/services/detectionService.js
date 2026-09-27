@@ -2,55 +2,61 @@ export const TARGET_REGISTRY = {
   water: {
     id: 'water',
     label: 'Water',
+    available: true,
     supportedDatasets: ['sentinel-2', 'landsat-8', 'sar'],
     resultType: 'Polygon',
-    description: 'Detects water bodies, rivers, and lakes using NDWI and SAR workflows.',
-    color: '#06b6d4', // cyan
+    description: 'Detects water bodies, rivers, and lakes using NDWI.',
+    color: '#06b6d4',
     fillOpacity: 0.3,
   },
   vegetation: {
     id: 'vegetation',
     label: 'Vegetation',
+    available: true,
     supportedDatasets: ['sentinel-2', 'landsat-8'],
     resultType: 'Polygon',
     description: 'Measures vegetation health and coverage using NDVI.',
-    color: '#10b981', // emerald
+    color: '#10b981',
     fillOpacity: 0.2,
   },
   buildings: {
     id: 'buildings',
     label: 'Buildings',
+    available: false,
     supportedDatasets: ['high-res-optical'],
     resultType: 'Polygon',
-    description: 'Identifies individual building footprints.',
-    color: '#3b82f6', // blue
+    description: 'Coming Soon — Building footprint detection.',
+    color: '#3b82f6',
     fillOpacity: 0.2,
   },
   construction: {
     id: 'construction',
     label: 'Construction',
+    available: false,
     supportedDatasets: ['sentinel-2', 'high-res-optical'],
     resultType: 'Polygon',
-    description: 'Detects active construction and temporal structural changes.',
-    color: '#f59e0b', // amber
+    description: 'Coming Soon — Active construction detection.',
+    color: '#f59e0b',
     fillOpacity: 0.25,
   },
   roads: {
     id: 'roads',
     label: 'Roads',
+    available: false,
     supportedDatasets: ['high-res-optical', 'sentinel-2'],
     resultType: 'LineString',
-    description: 'Extracts road networks and segments.',
-    color: '#f97316', // orange
+    description: 'Coming Soon — Road network extraction.',
+    color: '#f97316',
     lineThickness: 3,
   },
   burn: {
     id: 'burn',
     label: 'Burn Areas',
+    available: false,
     supportedDatasets: ['sentinel-2', 'landsat-8'],
     resultType: 'Polygon',
-    description: 'Detects burn scars and calculates burned area extent.',
-    color: '#ef4444', // red
+    description: 'Coming Soon — Burn scar detection.',
+    color: '#ef4444',
     fillOpacity: 0.3,
   },
 };
@@ -70,88 +76,11 @@ export const detectRouter = (query) => {
   return 'unsupported';
 };
 
-// Generates valid GeoJSON mock detections within a bounding box
-function generateMockDetections(targetId, bbox) {
-  const [minLng, minLat, maxLng, maxLat] = bbox;
-  
-  const count = Math.floor(Math.random() * 4) + 1; // 1 to 4 detections
-  const features = [];
-  
-  const width = maxLng - minLng;
-  const height = maxLat - minLat;
-  
-  const targetDef = TARGET_REGISTRY[targetId];
-  
-  for (let i = 0; i < count; i++) {
-    // Pick a random center inside the bbox
-    const cLng = minLng + (width * 0.2) + (Math.random() * width * 0.6);
-    const cLat = minLat + (height * 0.2) + (Math.random() * height * 0.6);
-    
-    const objWidth = width * (0.1 + Math.random() * 0.2);
-    const objHeight = height * (0.1 + Math.random() * 0.2);
-    
-    let geometry;
-    let area = 0;
-    
-    if (targetDef.resultType === 'LineString') {
-      geometry = {
-        type: 'LineString',
-        coordinates: [
-          [cLng - objWidth, cLat - objHeight],
-          [cLng, cLat + objHeight/2],
-          [cLng + objWidth, cLat + objHeight]
-        ]
-      };
-      area = (Math.random() * 5 + 1).toFixed(1); // represented as length in km
-    } else {
-      geometry = {
-        type: 'Polygon',
-        coordinates: [[
-          [cLng - objWidth, cLat - objHeight],
-          [cLng + objWidth, cLat - objHeight],
-          [cLng + objWidth/2, cLat + objHeight],
-          [cLng - objWidth/2, cLat + objHeight],
-          [cLng - objWidth, cLat - objHeight]
-        ]]
-      };
-      area = (Math.random() * 20 + 2).toFixed(1); // represented as area in sq km
-    }
-    
-    const confidence = (85 + Math.random() * 14).toFixed(1);
-    
-    let label = `${targetDef.label} Candidate`;
-    if (targetId === 'water') label = 'Water Body';
-    else if (targetId === 'vegetation') label = 'Vegetation Region';
-    else if (targetId === 'buildings') label = 'Building Footprint';
-    else if (targetId === 'construction') label = 'Active Construction';
-    else if (targetId === 'roads') label = 'Road Segment';
-    else if (targetId === 'burn') label = 'Burned Area';
 
-    features.push({
-      type: 'Feature',
-      id: `det-${Date.now()}-${i}`,
-      properties: {
-        id: `det-${Date.now()}-${i}`,
-        targetType: targetId,
-        label: `${label} ${String(i+1).padStart(2, '0')}`,
-        confidence: Number(confidence),
-        area: Number(area),
-        status: confidence > 90 ? 'Confirmed' : 'Candidate',
-        change: targetId === 'construction' ? '+ New Structure' : undefined
-      },
-      geometry
-    });
-  }
-  
-  return features;
-}
 
-// Main detection service
-export const detect = async (request) => {
+// Main detection service (Frontend API client)
+export const detect = async (request, onStatusUpdate = () => {}) => {
   const { query, targetType, geometry, dataset, date } = request;
-  
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 2000));
   
   let finalTargetType = targetType;
   if (query) {
@@ -173,54 +102,41 @@ export const detect = async (request) => {
       message: 'Invalid target type selected.'
     };
   }
-  
-  // Compute bounding box from geometry coordinates to generate mock data
-  let bbox = [-180, -90, 180, 90];
-  if (geometry && geometry.coordinates && geometry.coordinates.length > 0) {
-    let coords = [];
-    if (geometry.type === 'Polygon') {
-      coords = geometry.coordinates[0];
-    } else {
-      coords = geometry.coordinates;
+
+  // Call real API
+  try {
+    const res = await fetch('http://localhost:3001/api/detection', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        targetType: finalTargetType,
+        geometry,
+        dataset,
+        date
+      })
+    });
+    
+    let data = await res.json();
+    
+    if (data.status === 'queued') {
+      onStatusUpdate(data.status);
+      while (['queued', 'searching_imagery', 'analysing', 'vectorising', 'measuring', 'saving'].includes(data.status)) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        const pollRes = await fetch(`http://localhost:3001/api/detection/${data.id}`);
+        data = await pollRes.json();
+        onStatusUpdate(data.status);
+      }
     }
     
-    let minLng = 180, minLat = 90, maxLng = -180, maxLat = -90;
-    coords.forEach(coord => {
-      if (coord[0] < minLng) minLng = coord[0];
-      if (coord[1] < minLat) minLat = coord[1];
-      if (coord[0] > maxLng) maxLng = coord[0];
-      if (coord[1] > maxLat) maxLat = coord[1];
-    });
-    bbox = [minLng, minLat, maxLng, maxLat];
-  }
-  
-  // Occasionally simulate insufficient data (e.g. 5% chance)
-  if (Math.random() < 0.05) {
+    return data;
+  } catch (err) {
+    console.error('API call failed:', err);
     return {
       status: 'error',
-      error: 'INSUFFICIENT_DATA',
-      message: 'Cloud cover exceeds 90% or sensor data is unavailable for this date range.'
+      error: 'NETWORK_ERROR',
+      message: 'Failed to connect to detection backend.'
     };
   }
-  
-  const features = generateMockDetections(finalTargetType, bbox);
-  
-  return {
-    id: `req-${Date.now()}`,
-    status: 'success',
-    targetType: finalTargetType,
-    dataset: dataset || 'Sentinel-2',
-    date: date || new Date().toISOString().split('T')[0],
-    aoi: geometry,
-    detections: {
-      type: 'FeatureCollection',
-      features: features
-    },
-    summary: {
-      count: features.length,
-      totalArea: features.reduce((acc, f) => acc + f.properties.area, 0),
-      avgConfidence: features.reduce((acc, f) => acc + f.properties.confidence, 0) / features.length
-    },
-    evidenceId: `ev-${Date.now()}`
-  };
 };

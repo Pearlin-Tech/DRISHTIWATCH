@@ -12,9 +12,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/earthengine": "^1.7.45",
     "@mapbox/mapbox-gl-draw": "^1.5.2",
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
     "express": "^5.2.1",
     "framer-motion": "^13.4.4",
     "google-auth-library": "^11.1.0",
@@ -24,6 +26,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1",
     "sqlite3": "^6.0.1"
   },
   "devDependencies": {

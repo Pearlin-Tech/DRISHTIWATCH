@@ -18,6 +18,9 @@ export default function MapViewport({
   const markerRef = useRef(null);
 
   const [mapError, setMapError] = useState(false);
+  const [internalHoverCoords, setInternalHoverCoords] = useState(null);
+
+  const displayHoverCoords = hoverCoords !== undefined ? hoverCoords : internalHoverCoords;
 
   useEffect(() => {
     if (map.current) return;
@@ -70,12 +73,20 @@ export default function MapViewport({
               x: e.point.x,
               y: e.point.y
             });
+          } else {
+            setInternalHoverCoords({
+              lng: e.lngLat.lng.toFixed(4),
+              lat: e.lngLat.lat.toFixed(4),
+              x: e.point.x,
+              y: e.point.y
+            });
           }
         });
       });
 
       map.current.on('mouseout', () => {
         if (setHoverCoords) setHoverCoords(null);
+        else setInternalHoverCoords(null);
       });
 
       map.current.on('click', (e) => {
@@ -108,7 +119,7 @@ export default function MapViewport({
   }, [markerCoords]);
 
   return (
-    <div className={`map-container ${hoverCoords ? 'crosshair-active' : ''}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+    <div className={`map-container ${displayHoverCoords ? 'crosshair-active' : ''}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
       {mapError ? (
         <div className="w-full h-full flex flex-col items-center justify-center bg-black text-gray">
           <div className="text-warning mb-2 text-xl font-bold">MAP UNAVAILABLE</div>
@@ -121,23 +132,24 @@ export default function MapViewport({
       
       {/* HOVER CROSSHAIR GUIDES */}
       <AnimatePresence>
-        {hoverCoords && (
+        {displayHoverCoords && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
             className="crosshair-guides"
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 4 }}
           >
-            <div className="crosshair-guide-h" style={{ top: hoverCoords.y }} />
-            <div className="crosshair-guide-v" style={{ left: hoverCoords.x }} />
+            <div className="crosshair-guide-h" style={{ position: 'absolute', left: 0, right: 0, height: '1px', background: 'rgba(255,255,255,0.15)', top: displayHoverCoords.y }} />
+            <div className="crosshair-guide-v" style={{ position: 'absolute', top: 0, bottom: 0, width: '1px', background: 'rgba(255,255,255,0.15)', left: displayHoverCoords.x }} />
             
             <div 
               className="hover-coordinate-indicator glass-panel text-xs font-mono"
-              style={{ left: hoverCoords.x + 15, top: hoverCoords.y + 15 }}
+              style={{ position: 'absolute', left: displayHoverCoords.x + 15, top: displayHoverCoords.y + 15, pointerEvents: 'none', padding: '8px 12px', background: 'rgba(10,12,16,0.85)', backdropFilter: 'blur(12px)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.6)' }}
             >
-              <div>LAT {hoverCoords.lat}° N</div>
-              <div>LON {hoverCoords.lng}° E</div>
+              <div>LAT {displayHoverCoords.lat}° N</div>
+              <div>LON {displayHoverCoords.lng}° E</div>
             </div>
           </motion.div>
         )}

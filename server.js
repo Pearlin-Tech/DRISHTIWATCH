@@ -3,6 +3,11 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
+import { detectionService } from './backend/detectionService.js';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.join(process.cwd(), '.env.local') });
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -89,6 +94,123 @@ const deleteRow = (table, id) => {
   });
 };
 
+const detectionJobs = {};
+
+app.post('/api/detection', (req, res) => {
+  const provider = process.env.DETECT_PROVIDER || 'earth-engine';
+  if (provider === 'demo') {
+    return res.status(400).json({ error: 'Local Demo Mode is not allowed in production API.' });
+  }
+  
+  // Basic caching
+  const cacheKey = `${req.body.targetType}-${JSON.stringify(req.body.geometry)}`;
+  if (detectionJobs[cacheKey] && detectionJobs[detectionJobs[cacheKey]]) {
+    return res.json({ id: detectionJobs[cacheKey], status: 'queued' });
+  }
+
+  const jobId = `job-${Date.now()}`;
+  detectionJobs[jobId] = { id: jobId, status: 'queued' };
+  detectionJobs[cacheKey] = jobId;
+
+  // Run asynchronously
+  (async () => {
+    const updateJob = (statusStr) => {
+      detectionJobs[jobId].status = statusStr;
+    };
+    
+    try {
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('TIMEOUT')), 90000) // 90s timeout
+      );
+      
+      const detectPromise = detectionService.detect(req.body, updateJob);
+      const result = await Promise.race([detectPromise, timeoutPromise]);
+      
+      if (result.status === 'success') {
+        // Save authoritative Analysis
+        const analysisId = `analysis-${Date.now()}`;
+        await insertRow('analyses', analysisId, {
+          id: analysisId,
+          targetType: req.body.targetType,
+          geometry: req.body.geometry,
+          dataset: result.dataset,
+          status: 'completed',
+          createdAt: new Date().toISOString()
+        });
+
+        // Create evidence record
+        await insertRow('evidence', result.evidenceId, {
+          id: result.evidenceId,
+          analysisId: analysisId,
+          type: 'detection',
+          timestamp: new Date().toISOString(),
+          dataset: result.dataset,
+          acquisition: result.acquisition,
+          method: result.method,
+          summary: result.summary,
+          aoi: result.aoi
+        });
+        
+        // Create detection (analysis_results)
+        await insertRow('analysis_results', `det-${Date.now()}`, {
+          id: `det-${Date.now()}`,
+          analysisId: analysisId,
+          targetType: req.body.targetType,
+          metrics: result.analysis,
+          summary: result.summary,
+          detections: result.detections
+        });
+      }
+      
+      // Store final result
+      Object.assign(detectionJobs[jobId], result);
+      
+      // If success or handled error, the status is already properly set by detectionService
+      // wait, detectionService returns { status: 'success' / 'error' / 'no_results' }
+      if (result.status === 'success') detectionJobs[jobId].status = 'ready';
+      else if (result.status === 'error') detectionJobs[jobId].status = 'failed';
+      else detectionJobs[jobId].status = result.status; // 'no_detections', 'no_candidate_pixels', etc
+      
+    } catch (error) {
+      console.error('Detection API error for job', jobId, error);
+      if (error.message === 'TIMEOUT') {
+        detectionJobs[jobId] = { id: jobId, status: 'timeout', message: 'Detection timed out while converting the analysis mask into geographic features.' };
+      } else {
+        detectionJobs[jobId] = { id: jobId, status: 'failed', error: 'PROCESSING_FAILED', message: error.message || 'Unknown processing error' };
+      }
+    }
+  })();
+
+  res.json({ id: jobId, status: 'queued' });
+});
+
+app.get('/api/detection/:id', (req, res) => {
+  const job = detectionJobs[req.params.id];
+  if (!job) {
+    return res.status(404).json({ error: 'Job not found' });
+  }
+  res.json(job);
+});
+
+
+// EARTH ENGINE HEALTH
+app.get('/api/earth-engine/health', async (req, res) => {
+  try {
+    // Just a basic check that variables are present
+    const hasProject = !!process.env.EARTH_ENGINE_PROJECT_ID;
+    const hasEmail = !!process.env.EARTH_ENGINE_CLIENT_EMAIL;
+    const hasKey = !!process.env.EARTH_ENGINE_PRIVATE_KEY;
+    
+    res.json({
+      authenticated: hasProject && hasEmail && hasKey,
+      projectConfigured: hasProject,
+      initialized: true // If we wanted true runtime check we'd call auth.js
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'EARTH ENGINE PROVIDER ERROR', message: err.message });
+  }
+});
+
 // GET all items for a resource (or the settings object)
 app.get('/api/:resource', async (req, res) => {
   try {
@@ -122,6 +244,8 @@ app.get('/api/:resource/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to read data' });
   }
 });
+
+
 
 // POST to create a new item (or overwrite settings)
 app.post('/api/:resource', async (req, res) => {
@@ -187,6 +311,7 @@ app.delete('/api/:resource/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete data' });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Local authoritative server running on http://localhost:${PORT} with SQLite backend`);
