@@ -1,0 +1,197 @@
+.ask-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.ask-top-bar {
+  position: absolute;
+  top: var(--spacing-6);
+  left: 120px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(10, 12, 16, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  min-width: 400px;
+}
+
+.ask-bottom-center {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 640px;
+}
+
+.query-composer {
+  width: 100%;
+  padding: var(--spacing-4);
+  border-radius: 24px;
+  background: rgba(10, 12, 16, 0.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.query-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.query-form:focus-within {
+  border-color: rgba(37, 99, 235, 0.5);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.query-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  padding: 8px 0;
+}
+
+.query-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.ask-submit-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.ask-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.suggested-prompts {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 0 8px;
+  flex-wrap: wrap;
+}
+
+.prompt-pill {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.prompt-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.analysis-progress {
+  padding: 16px 24px;
+  border-radius: 24px;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(20px);
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+}
+
+.step.active {
+  color: var(--text-primary);
+}
+
+.step.pending {
+  color: rgba(139, 146, 161, 0.3);
+}
+
+.step-divider {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.result-panel {
+  width: 100%;
+  padding: var(--spacing-6);
+  border-radius: 16px;
+  background: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confidence-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.result-metrics {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.metric-box {
+  flex: 1;
+  padding: var(--spacing-4);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.evidence-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 340px;
+  background: rgba(10, 12, 16, 0.95);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--spacing-6);
+  z-index: 40;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+}
