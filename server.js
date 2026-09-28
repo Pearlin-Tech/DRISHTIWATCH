@@ -25,7 +25,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const DB_DIR = path.join(__dirname, 'server-data');
+const DB_DIR = process.env.VERCEL ? path.join('/tmp', 'server-data') : path.join(__dirname, 'server-data');
 const UPLOAD_DIR = path.join(DB_DIR, 'uploads', 'geotiff');
 
 if (!fs.existsSync(UPLOAD_DIR)) {
@@ -663,18 +663,22 @@ app.delete('/api/:resource/:id', async (req, res) => {
   }
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`Local authoritative server running on http://localhost:${PORT} with SQLite backend`);
-});
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, () => {
+    console.log(`Local authoritative server running on http://localhost:${PORT} with SQLite backend`);
+  });
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`\n[FATAL] Port ${PORT} is already in use.`);
-    console.error(`[FATAL] Kill the existing process first: kill $(lsof -t -i:${PORT})`);
-    console.error(`[FATAL] Then run: npm run server\n`);
-    process.exit(1);
-  } else {
-    console.error('[FATAL] Server error:', err);
-    process.exit(1);
-  }
-});
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\n[FATAL] Port ${PORT} is already in use.`);
+      console.error(`[FATAL] Kill the existing process first: kill $(lsof -t -i:${PORT})`);
+      console.error(`[FATAL] Then run: npm run server\n`);
+      process.exit(1);
+    } else {
+      console.error('[FATAL] Server error:', err);
+      process.exit(1);
+    }
+  });
+}
+
+export default app;

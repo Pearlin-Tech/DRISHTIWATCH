@@ -105,7 +105,7 @@ export const detect = async (request, onStatusUpdate = () => {}) => {
 
   // Call real API
   try {
-    const res = await fetch('http://localhost:3001/api/detection', {
+    const res = await fetch('/api/detection', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ export const detect = async (request, onStatusUpdate = () => {}) => {
       onStatusUpdate(data.status);
       while (['queued', 'searching_imagery', 'analysing', 'vectorising', 'measuring', 'saving'].includes(data.status)) {
         await new Promise(resolve => setTimeout(resolve, 1500));
-        const pollRes = await fetch(`http://localhost:3001/api/detection/${data.id}`);
+        const pollRes = await fetch(`/api/detection/${data.id}`);
         data = await pollRes.json();
         onStatusUpdate(data.status);
       }

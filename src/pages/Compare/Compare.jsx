@@ -154,7 +154,7 @@ export default function Compare() {
       const controller = new AbortController();
       abortControllerRef.current = controller;
       try {
-        const response = await fetch('http://localhost:3001/api/compare', {
+        const response = await fetch('/api/compare', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           signal: controller.signal,
