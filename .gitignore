@@ -40,3 +40,6 @@ server-data/
 *.pem
 credentials/
 secrets/
+
+# Local Netlify folder
+.netlify
