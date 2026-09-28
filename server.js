@@ -25,7 +25,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const DB_DIR = process.env.VERCEL ? path.join('/tmp', 'server-data') : path.join(__dirname, 'server-data');
+const DB_DIR = (process.env.VERCEL || process.env.NETLIFY) ? path.join('/tmp', 'server-data') : path.join(__dirname, 'server-data');
 const UPLOAD_DIR = path.join(DB_DIR, 'uploads', 'geotiff');
 
 if (!fs.existsSync(UPLOAD_DIR)) {
@@ -663,7 +663,7 @@ app.delete('/api/:resource/:id', async (req, res) => {
   }
 });
 
-if (!process.env.VERCEL) {
+if (!process.env.VERCEL && !process.env.NETLIFY) {
   const server = app.listen(PORT, () => {
     console.log(`Local authoritative server running on http://localhost:${PORT} with SQLite backend`);
   });
