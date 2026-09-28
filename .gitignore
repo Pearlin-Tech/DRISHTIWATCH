@@ -28,6 +28,15 @@ dist-ssr
 .env.local
 .env.*.local
 *.key
+
+# Google Earth Engine service account key — NEVER COMMIT
+ee-key.json
+*.json.key
+
+# Server data / databases
+server-data/
+*.sqlite
+*.db
 *.pem
 credentials/
 secrets/
