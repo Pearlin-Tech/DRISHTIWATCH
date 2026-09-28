@@ -13,8 +13,12 @@ import { getSatelliteMetadata } from './server/services/geospatial/satelliteData
 import { executeGeospatialAnalysis } from './server/services/geospatial/analysisEngine.js';
 import { generateGroundedExplanation } from './server/services/ai/llmExplainer.js';
 import { parseGeoTiffBuffer } from './server/services/geospatial/rasterParser.js';
+import { initEE, getCompareData, healthCheck } from './server-gee.js';
 
 dotenv.config({ path: path.join(process.cwd(), '.env.local') });
+
+// Initialize Earth Engine in background
+initEE().catch(err => console.warn('[EE] Init error (non-fatal):', err.message));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -630,6 +634,28 @@ app.delete('/api/:resource/:id', async (req, res) => {
   }
 });
 
+// ─── Earth Engine / Compare Routes ────────────────────────────────────────
+app.get('/api/compare/health', async (req, res) => {
+  try {
+    const health = await healthCheck();
+    res.json(health);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/compare', async (req, res) => {
+  try {
+    const { baselineDate, currentDate, coords, bounds, indicator } = req.body;
+    if (!baselineDate || !currentDate || !coords) {
+      return res.status(400).json({ status: 'error', code: 'INVALID_REQUEST', message: 'Missing baselineDate, currentDate, or coords' });
+    }
+    const result = await getCompareData({ baselineDate, currentDate, coords, bounds, indicator });
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Local authoritative server running on http://localhost:${PORT} with SQLite backend`);
