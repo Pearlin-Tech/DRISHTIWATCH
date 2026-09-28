@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@google/earthengine": "^1.7.45",
-    "@rolldown/binding-darwin-arm64": "^1.2.11",
     "cors": "^2.8.6",
     "dotenv": "^18.0.4",
     "express": "^5.2.1",
