@@ -60,8 +60,9 @@ db.serialize(() => {
     'users', 'saved_locations', 'analyses', 'analysis_results',
     'evidence', 'reports', 'measurements', 'watches', 
     'watch_passes', 'timeline_events', 'exports', 'ai_queries',
-    'raster_attachments'
+    'raster_attachments', 'compare'
   ];
+
 
   tables.forEach(table => {
     db.run(`CREATE TABLE IF NOT EXISTS ${table} (
@@ -533,6 +534,34 @@ app.post('/api/ai/ask', async (req, res) => {
   }
 });
 
+// ─── Health endpoint (must be BEFORE generic /:resource) ───────────────────
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true, service: 'satquery-api', port: PORT, timestamp: new Date().toISOString() });
+});
+
+// ─── Earth Engine / Compare Routes (must be BEFORE generic /:resource) ───────
+app.get('/api/compare/health', async (req, res) => {
+  try {
+    const health = await healthCheck();
+    res.json(health);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/compare', async (req, res) => {
+  try {
+    const { baselineDate, currentDate, coords, bounds, indicator } = req.body;
+    if (!baselineDate || !currentDate || !coords) {
+      return res.status(400).json({ status: 'error', code: 'INVALID_REQUEST', message: 'Missing baselineDate, currentDate, or coords' });
+    }
+    const result = await getCompareData({ baselineDate, currentDate, coords, bounds, indicator });
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
 // GET all items for a resource (or the settings object)
 app.get('/api/:resource', async (req, res) => {
   try {
@@ -634,29 +663,18 @@ app.delete('/api/:resource/:id', async (req, res) => {
   }
 });
 
-// ─── Earth Engine / Compare Routes ────────────────────────────────────────
-app.get('/api/compare/health', async (req, res) => {
-  try {
-    const health = await healthCheck();
-    res.json(health);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.post('/api/compare', async (req, res) => {
-  try {
-    const { baselineDate, currentDate, coords, bounds, indicator } = req.body;
-    if (!baselineDate || !currentDate || !coords) {
-      return res.status(400).json({ status: 'error', code: 'INVALID_REQUEST', message: 'Missing baselineDate, currentDate, or coords' });
-    }
-    const result = await getCompareData({ baselineDate, currentDate, coords, bounds, indicator });
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ status: 'error', message: error.message });
-  }
-});
-
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Local authoritative server running on http://localhost:${PORT} with SQLite backend`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`\n[FATAL] Port ${PORT} is already in use.`);
+    console.error(`[FATAL] Kill the existing process first: kill $(lsof -t -i:${PORT})`);
+    console.error(`[FATAL] Then run: npm run server\n`);
+    process.exit(1);
+  } else {
+    console.error('[FATAL] Server error:', err);
+    process.exit(1);
+  }
 });

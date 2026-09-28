@@ -57,44 +57,73 @@ export async function initEE() {
   if (eeInitialized) return true;
 
   const keyPath = path.join(__dirname, 'ee-key.json');
-  if (!fs.existsSync(keyPath)) {
-    console.warn('[EE] ee-key.json not found. Earth Engine will not work.');
+
+  // ── Strategy 1: ee-key.json file ─────────────────────────────
+  if (fs.existsSync(keyPath)) {
+    try {
+      const auth = new GoogleAuth({
+        keyFile: keyPath,
+        scopes: ['https://www.googleapis.com/auth/earthengine', 'https://www.googleapis.com/auth/cloud-platform']
+      });
+
+      const client = await auth.getClient();
+      const token = await client.getAccessToken();
+
+      return new Promise((resolve, reject) => {
+        ee.data.setAuthToken(
+          client.credentials.client_email,
+          'Bearer',
+          token.token,
+          3600,
+          null,
+          () => {
+            ee.initialize(null, null, () => {
+              console.log('[EE] Earth Engine Initialized via ee-key.json');
+              eeInitialized = true;
+              resolve(true);
+            }, (err) => {
+              console.error('[EE] Init error (key file):', err);
+              reject(err);
+            });
+          },
+          false
+        );
+      });
+    } catch (error) {
+      console.warn('[EE] Key file auth failed, trying env vars:', error.message);
+    }
+  }
+
+  // ── Strategy 2: Environment variables ────────────────────────
+  const clientEmail = process.env.EARTH_ENGINE_CLIENT_EMAIL;
+  const rawKey = process.env.EARTH_ENGINE_PRIVATE_KEY;
+  if (!clientEmail || !rawKey) {
+    console.warn('[EE] No ee-key.json and no EARTH_ENGINE_* env vars found. Earth Engine disabled.');
     return false;
   }
 
-  try {
-    const auth = new GoogleAuth({
-      keyFile: keyPath,
-      scopes: ['https://www.googleapis.com/auth/earthengine', 'https://www.googleapis.com/auth/cloud-platform']
-    });
+  const privateKey = rawKey.replace(/\\n/g, '\n');
+  console.log('[EE] Authenticating via environment variables...');
 
-    const client = await auth.getClient();
-    const token = await client.getAccessToken();
-
-    return new Promise((resolve, reject) => {
-      ee.data.setAuthToken(
-        client.credentials.client_email,
-        'Bearer',
-        token.token,
-        3600,
-        null,
-        () => {
-          ee.initialize(null, null, () => {
-            console.log('[EE] Earth Engine Successfully Initialized');
-            eeInitialized = true;
-            resolve(true);
-          }, (err) => {
-            console.error('[EE] Init error:', err);
-            reject(err);
-          });
-        },
-        false
-      );
-    });
-  } catch (error) {
-    console.error('[EE] Auth failed:', error.message);
-    return false;
-  }
+  return new Promise((resolve) => {
+    ee.data.authenticateViaPrivateKey(
+      { client_email: clientEmail, private_key: privateKey },
+      () => {
+        ee.initialize(null, null, () => {
+          console.log('[EE] Earth Engine Initialized via env vars');
+          eeInitialized = true;
+          resolve(true);
+        }, (err) => {
+          console.error('[EE] Init error (env vars):', err);
+          resolve(false);
+        });
+      },
+      (err) => {
+        console.error('[EE] Auth error (env vars):', err);
+        resolve(false);
+      }
+    );
+  });
 }
 
 // ─── Health Check ────────────────────────────────────────────────
@@ -319,7 +348,7 @@ export async function getCompareData(params) {
     return {
       status: 'error',
       code: 'EE_AUTH_ERROR',
-      message: 'Earth Engine not initialized. Check ee-key.json and project registration.',
+      message: 'Earth Engine not initialized. Check EARTH_ENGINE_* environment variables and project registration.',
       requestId
     };
   }
