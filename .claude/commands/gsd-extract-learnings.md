@@ -17,7 +17,7 @@ Extract structured learnings from completed phase artifacts (PLAN.md, SUMMARY.md
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/extract-learnings.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/extract-learnings.md
 </execution_context>
 
-Execute the extract-learnings workflow from @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/extract-learnings.md end-to-end.
+Execute the extract-learnings workflow from @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/extract-learnings.md end-to-end.

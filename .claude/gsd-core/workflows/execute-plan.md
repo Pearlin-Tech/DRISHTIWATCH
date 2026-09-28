@@ -6,7 +6,7 @@ Execute a phase prompt (PLAN.md) and create the outcome summary (SUMMARY.md).
 Read STATE.md before any operation to load project context.
 Read config.json for planning behavior settings.
 
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/git-integration.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/git-integration.md
 </required_reading>
 
 <atomic_close_out_invariant>
@@ -42,7 +42,7 @@ Valid GSD subagent types (use exact names — do not fall back to 'general-purpo
 <step name="init_context" priority="first">
 Load execution context (paths only to minimize orchestrator context):
 
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/gsd-run-resolver.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/gsd-run-resolver.md
 
 ```bash
 INIT=$(gsd_run query init.execute-phase "${PHASE}")
@@ -294,7 +294,7 @@ For `type: tdd` plans — RED-GREEN-REFACTOR:
 
 1. **Infrastructure** (first TDD plan only): detect project, install framework, config, verify empty suite
 2. **Cycle (#3990: stated ONCE; #4267: cited correctly):** execute RED → GREEN → REFACTOR
-exactly as specified in the canonical `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/tdd.md` reference — the
+exactly as specified in the canonical `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/tdd.md` reference — the
 "Red-Green-Refactor Cycle" section's commit-scope contract (`test({phase}-{plan})` →
 `feat({phase}-{plan})` → `refactor({phase}-{plan})`, RED must fail, GREEN must pass, REFACTOR
 commits only on change), the "Gate Enforcement Rules" section's "Fail-Fast Rules" subsection,
@@ -348,7 +348,7 @@ Display: `### CHECKPOINT: [Type]` heading → Progress {X}/{Y} → Task name →
 
 After response: verify if specified. Pass → continue. Fail → inform, wait. WAIT for user — do NOT hallucinate completion.
 
-See /Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/checkpoints.md for details.
+See /Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/checkpoints.md for details.
 </step>
 
 <step name="checkpoint_return_for_orchestrator">
@@ -401,7 +401,7 @@ fi
 grep -A 50 "^user_setup:" .planning/phases/XX-name/{phase}-{plan}-PLAN.md | head -50
 ```
 
-If user_setup exists: create `{phase}-USER-SETUP.md` using the template at `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/user-setup.md` (or its `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/user-setup.compact.md` variant — resolve per `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/compact-content-gate.md` §"Streams 1b and 4"). Per service: env vars table, account setup checklist, dashboard config, local dev notes, verification commands. Status "Incomplete". Set `USER_SETUP_CREATED=true`. If empty/missing: skip.
+If user_setup exists: create `{phase}-USER-SETUP.md` using the template at `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/user-setup.md` (or its `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/user-setup.compact.md` variant — resolve per `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/compact-content-gate.md` §"Streams 1b and 4"). Per service: env vars table, account setup checklist, dashboard config, local dev notes, verification commands. Status "Incomplete". Set `USER_SETUP_CREATED=true`. If empty/missing: skip.
 </step>
 
 <step name="create_summary">
@@ -410,7 +410,7 @@ emit narrative output between the Write tool call and the commit tool call.
 Truncation at this boundary is a known failure mode (see #2070 rescue logic in
 execute-phase.md step 5.5).
 
-Create `{phase}-{plan}-SUMMARY.md` at `.planning/phases/XX-name/`. Use the template at `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/summary.md` (or `summary.compact.md` — same `compact-content-gate.md` resolution as the USER-SETUP template above).
+Create `{phase}-{plan}-SUMMARY.md` at `.planning/phases/XX-name/`. Use the template at `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/summary.md` (or `summary.compact.md` — same `compact-content-gate.md` resolution as the USER-SETUP template above).
 
 **Frontmatter:** phase, plan, subsystem, tags | requires/provides/affects | tech-stack.added/patterns | key-files.created/modified | key-decisions | requirements-completed (**MUST** copy `requirements` array from PLAN.md frontmatter verbatim) | duration ($DURATION), completed ($PLAN_END_TIME date).
 

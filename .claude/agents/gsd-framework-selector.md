@@ -12,7 +12,7 @@ Run a ≤6-question interview, score frameworks, return a ranked recommendation 
 </role>
 
 <required_reading>
-Read `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ai-frameworks.md` before asking questions. This is your decision matrix.
+Read `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ai-frameworks.md` before asking questions. This is your decision matrix.
 </required_reading>
 
 <project_context>

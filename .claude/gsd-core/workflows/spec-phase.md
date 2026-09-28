@@ -56,7 +56,7 @@ Rotate through these perspectives — each naturally surfaces different blindspo
 ## Step 1: Initialize
 
 ```bash
-_GSD_SHIM_NAME="gsd-tools.cjs"; _GSD_RUNTIME_ROOT="${RUNTIME_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"; GSD_TOOLS="${_GSD_RUNTIME_ROOT}/gsd-core/bin/${_GSD_SHIM_NAME}"; _gsd_at() { for _p; do if [ -f "$_p" ]; then GSD_TOOLS="$_p"; return 0; fi; done; return 1; }; _gsd_id_ok() { case "$("$1" runtime-identity --raw 2>/dev/null || true)" in '{"packageName":"@opengsd/gsd-core"'*'}') return 0;; *) return 1;; esac; }; _gsd_homes() { _gsd_at "${CLAUDE_CONFIG_DIR:-/Users/pearlindadhania/Desktop/SIH/.claude}/gsd-core/bin/${_GSD_SHIM_NAME}" "${HERMES_HOME:-$HOME/.hermes}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CURSOR_CONFIG_DIR:-$HOME/.cursor}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CODEX_HOME:-$HOME/.codex}/gsd-core/bin/${_GSD_SHIM_NAME}" "${GEMINI_CONFIG_DIR:-$HOME/.gemini}/gsd-core/bin/${_GSD_SHIM_NAME}" "${COPILOT_CONFIG_DIR:-$HOME/.copilot}/gsd-core/bin/${_GSD_SHIM_NAME}" "${WINDSURF_CONFIG_DIR:-$HOME/.codeium/windsurf}/gsd-core/bin/${_GSD_SHIM_NAME}" "${AUGMENT_CONFIG_DIR:-$HOME/.augment}/gsd-core/bin/${_GSD_SHIM_NAME}" "${TRAE_CONFIG_DIR:-$HOME/.trae}/gsd-core/bin/${_GSD_SHIM_NAME}" "${QWEN_CONFIG_DIR:-$HOME/.qwen}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CODEBUDDY_CONFIG_DIR:-$HOME/.codebuddy}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CLINE_CONFIG_DIR:-$HOME/.cline}/gsd-core/bin/${_GSD_SHIM_NAME}" "${GROK_AGENTS_HOME:-$HOME/.agents}/gsd-core/bin/${_GSD_SHIM_NAME}" "${ANTIGRAVITY_CONFIG_DIR:-$HOME/.gemini/antigravity}/gsd-core/bin/${_GSD_SHIM_NAME}" "${OPENCODE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/gsd-core/bin/${_GSD_SHIM_NAME}" "${KILO_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/kilo}/gsd-core/bin/${_GSD_SHIM_NAME}"; }; if _gsd_at "${_GSD_RUNTIME_ROOT}/gsd-core/bin/${_GSD_SHIM_NAME}" "${_GSD_RUNTIME_ROOT}/.claude/gsd-core/bin/${_GSD_SHIM_NAME}" "${_GSD_RUNTIME_ROOT}/.codex/gsd-core/bin/${_GSD_SHIM_NAME}"; then gsd_run() { node "$GSD_TOOLS" "$@"; }; elif _gsd_homes; then gsd_run() { node "$GSD_TOOLS" "$@"; }; elif unset -f gsd_run; _G="$(command -v gsd_run)"; [ -n "$_G" ] && _gsd_id_ok "$_G"; then GSD_TOOLS="$_G"; gsd_run() { "$GSD_TOOLS" "$@"; }; else echo "ERROR: gsd-tools.cjs not found at $GSD_TOOLS and no identity-proving gsd_run is on PATH. Run: npx -y @opengsd/gsd-core@latest --claude --local" >&2; exit 1; fi; GSD_IDENTITY_STATUS=unverified; _gsd_id_ok gsd_run && GSD_IDENTITY_STATUS=ok; export GSD_IDENTITY_STATUS; [ "$GSD_IDENTITY_STATUS" = ok ] || echo "WARNING: \"$GSD_TOOLS\" did not prove it is @opengsd/gsd-core - it is either a different package or an @opengsd/gsd-core older than the runtime-identity verb. See docs/how-to/diagnose-a-foreign-gsd-tools.md" >&2; if [ -n "${CLAUDE_ENV_FILE:-}" ] && [ -n "${GSD_TOOLS:-}" ]; then printf "export PATH='%s':\"\$PATH\"\n" "${GSD_TOOLS%/*}" >> "$CLAUDE_ENV_FILE" 2>/dev/null || true; fi
+_GSD_SHIM_NAME="gsd-tools.cjs"; _GSD_RUNTIME_ROOT="${RUNTIME_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"; GSD_TOOLS="${_GSD_RUNTIME_ROOT}/gsd-core/bin/${_GSD_SHIM_NAME}"; _gsd_at() { for _p; do if [ -f "$_p" ]; then GSD_TOOLS="$_p"; return 0; fi; done; return 1; }; _gsd_id_ok() { case "$("$1" runtime-identity --raw 2>/dev/null || true)" in '{"packageName":"@opengsd/gsd-core"'*'}') return 0;; *) return 1;; esac; }; _gsd_homes() { _gsd_at "${CLAUDE_CONFIG_DIR:-/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude}/gsd-core/bin/${_GSD_SHIM_NAME}" "${HERMES_HOME:-$HOME/.hermes}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CURSOR_CONFIG_DIR:-$HOME/.cursor}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CODEX_HOME:-$HOME/.codex}/gsd-core/bin/${_GSD_SHIM_NAME}" "${GEMINI_CONFIG_DIR:-$HOME/.gemini}/gsd-core/bin/${_GSD_SHIM_NAME}" "${COPILOT_CONFIG_DIR:-$HOME/.copilot}/gsd-core/bin/${_GSD_SHIM_NAME}" "${WINDSURF_CONFIG_DIR:-$HOME/.codeium/windsurf}/gsd-core/bin/${_GSD_SHIM_NAME}" "${AUGMENT_CONFIG_DIR:-$HOME/.augment}/gsd-core/bin/${_GSD_SHIM_NAME}" "${TRAE_CONFIG_DIR:-$HOME/.trae}/gsd-core/bin/${_GSD_SHIM_NAME}" "${QWEN_CONFIG_DIR:-$HOME/.qwen}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CODEBUDDY_CONFIG_DIR:-$HOME/.codebuddy}/gsd-core/bin/${_GSD_SHIM_NAME}" "${CLINE_CONFIG_DIR:-$HOME/.cline}/gsd-core/bin/${_GSD_SHIM_NAME}" "${GROK_AGENTS_HOME:-$HOME/.agents}/gsd-core/bin/${_GSD_SHIM_NAME}" "${ANTIGRAVITY_CONFIG_DIR:-$HOME/.gemini/antigravity}/gsd-core/bin/${_GSD_SHIM_NAME}" "${OPENCODE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/gsd-core/bin/${_GSD_SHIM_NAME}" "${KILO_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/kilo}/gsd-core/bin/${_GSD_SHIM_NAME}"; }; if _gsd_at "${_GSD_RUNTIME_ROOT}/gsd-core/bin/${_GSD_SHIM_NAME}" "${_GSD_RUNTIME_ROOT}/.claude/gsd-core/bin/${_GSD_SHIM_NAME}" "${_GSD_RUNTIME_ROOT}/.codex/gsd-core/bin/${_GSD_SHIM_NAME}"; then gsd_run() { node "$GSD_TOOLS" "$@"; }; elif _gsd_homes; then gsd_run() { node "$GSD_TOOLS" "$@"; }; elif unset -f gsd_run; _G="$(command -v gsd_run)"; [ -n "$_G" ] && _gsd_id_ok "$_G"; then GSD_TOOLS="$_G"; gsd_run() { "$GSD_TOOLS" "$@"; }; else echo "ERROR: gsd-tools.cjs not found at $GSD_TOOLS and no identity-proving gsd_run is on PATH. Run: npx -y @opengsd/gsd-core@latest --claude --local" >&2; exit 1; fi; GSD_IDENTITY_STATUS=unverified; _gsd_id_ok gsd_run && GSD_IDENTITY_STATUS=ok; export GSD_IDENTITY_STATUS; [ "$GSD_IDENTITY_STATUS" = ok ] || echo "WARNING: \"$GSD_TOOLS\" did not prove it is @opengsd/gsd-core - it is either a different package or an @opengsd/gsd-core older than the runtime-identity verb. See docs/how-to/diagnose-a-foreign-gsd-tools.md" >&2; if [ -n "${CLAUDE_ENV_FILE:-}" ] && [ -n "${GSD_TOOLS:-}" ]; then printf "export PATH='%s':\"\$PATH\"\n" "${GSD_TOOLS%/*}" >> "$CLAUDE_ENV_FILE" 2>/dev/null || true; fi
 INIT=$(gsd_run init phase-op "${PHASE}")
 if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 ```
@@ -194,7 +194,7 @@ If gate passes (ambiguity ≤ 0.20 AND all minimums met):
 ## Step 5.5: Edge-Completeness Probe
 
 Run AFTER the ambiguity gate passes (you probe edges of clear requirements, not vague
-ones). Reference: @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/edge-probe.md.
+ones). Reference: @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/edge-probe.md.
 
 **Non-English projects — `text_en` carries the classifier-facing translation; the SPEC is
 not.** The shape cues the classifier matches are **English** word-boundary patterns, so
@@ -225,15 +225,15 @@ classifier.
 
 ```bash
 # Resolve the compiled edge-probe.cjs against the GSD install dir via RUNTIME_DIR (#448)
-# — NOT the consuming project's git root — falling back to git toplevel / /Users/pearlindadhania/Desktop/SIH/.claude.
+# — NOT the consuming project's git root — falling back to git toplevel / /Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude.
 # Mirrors the ui-safety-gate.cjs resolution idiom at autonomous.md:290 / plan-phase.md:631.
 _GSD_RT="${RUNTIME_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
 EDGE_PROBE_JS=$(for _c in \
   "$_GSD_RT/gsd-core/bin/lib/edge-probe.cjs" \
   "$_GSD_RT/bin/lib/edge-probe.cjs" \
   "$_GSD_RT/.claude/bin/lib/edge-probe.cjs" \
-  "/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/bin/lib/edge-probe.cjs" \
-  "/Users/pearlindadhania/Desktop/SIH/.claude/bin/lib/edge-probe.cjs"; do
+  "/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/bin/lib/edge-probe.cjs" \
+  "/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/bin/lib/edge-probe.cjs"; do
   [ -f "$_c" ] && { echo "$_c"; break; }
 done)
 
@@ -249,8 +249,8 @@ if [ -z "$EDGE_PROBE_JS" ]; then
       "$_GSD_RT/gsd-core/bin/lib/edge-probe.cjs" \
       "$_GSD_RT/bin/lib/edge-probe.cjs" \
       "$_GSD_RT/.claude/bin/lib/edge-probe.cjs" \
-      "/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/bin/lib/edge-probe.cjs" \
-      "/Users/pearlindadhania/Desktop/SIH/.claude/bin/lib/edge-probe.cjs"; do
+      "/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/bin/lib/edge-probe.cjs" \
+      "/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/bin/lib/edge-probe.cjs"; do
       [ -f "$_c" ] && { echo "$_c"; break; }
     done)
   fi
@@ -387,7 +387,7 @@ Populate the `## Edge Coverage` section of SPEC.md from the resolved edges.
 ## Step 5.6: Prohibition-Completeness Probe (must-NOT)
 
 Run AFTER Step 5.5 (you probe the must-NOT axis of clear requirements, over the same
-requirement list). Reference: @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/prohibition-probe.md — the
+requirement list). Reference: @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/prohibition-probe.md — the
 portable two-stage protocol, the canon-referral rule, and the status×verification schema
 live there (size-cap discipline; keep this step lean).
 
@@ -482,7 +482,7 @@ downstream rather than blocking authoring.
 
 ## Step 6: Generate SPEC.md
 
-Use the SPEC.md template from @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/spec.md.
+Use the SPEC.md template from @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/spec.md.
 
 - Populate the **Edge Coverage** section from Step 5.5 (resolved/dismissed/unresolved rows; resolved items carry `verification: explicit|backstop`).
 - Populate the **Prohibitions** section from Step 5.6 (resolved/dismissed/unresolved rows with the test|judgment tier).

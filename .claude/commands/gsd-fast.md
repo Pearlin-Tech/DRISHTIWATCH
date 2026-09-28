@@ -23,7 +23,7 @@ you could describe in one sentence and execute in under 2 minutes.
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/fast.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/fast.md
 </execution_context>
 
 <process>

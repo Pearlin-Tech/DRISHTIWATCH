@@ -1,8 +1,8 @@
 # Honest Verifier — Abstention on Non-Inferable Checks
 
 Shared reference for the **verify** phase. The verify-time companion to the spec-time
-`@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/edge-probe.md` (which *classifies* non-inferable checks) and
-`@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/prohibition-probe.md` (whose judgment-tier disposition this mirrors).
+`@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/edge-probe.md` (which *classifies* non-inferable checks) and
+`@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/prohibition-probe.md` (whose judgment-tier disposition this mirrors).
 This doc is written in generic `spec → predicate → verifier` terms with no tool-specific vocabulary,
 so it is portable: copy it into any verification process.
 

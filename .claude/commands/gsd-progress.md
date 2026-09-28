@@ -32,10 +32,10 @@ Three modes:
 </flags>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/progress.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/next.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/do.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ui-brand.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/progress.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/next.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/do.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ui-brand.md
 </execution_context>
 
 <process>

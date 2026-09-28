@@ -22,7 +22,7 @@ Routes to the settings workflow which handles:
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/settings.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/settings.md
 </execution_context>
 
 <process>

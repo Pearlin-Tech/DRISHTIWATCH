@@ -23,7 +23,7 @@ Output: updated SECURITY.md.
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/secure-phase.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/secure-phase.md
 </execution_context>
 
 <context>

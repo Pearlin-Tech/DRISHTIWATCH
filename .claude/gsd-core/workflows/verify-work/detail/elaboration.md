@@ -71,7 +71,7 @@ Spawning parallel debug agents to investigate each issue.
 ```
 
 - Load diagnose-issues workflow
-- Follow @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/diagnose-issues.md
+- Follow @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/diagnose-issues.md
 - Spawn parallel debug agents for each issue
 - Collect root causes
 - Update UAT.md with root causes

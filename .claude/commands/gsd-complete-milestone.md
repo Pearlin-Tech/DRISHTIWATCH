@@ -21,8 +21,8 @@ Output: Milestone archived (roadmap + requirements), PROJECT.md evolved, git tag
 <execution_context>
 **Load these files NOW (before proceeding):**
 
-- @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/complete-milestone.md (main workflow)
-- @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/milestone-archive.md (archive template)
+- @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/complete-milestone.md (main workflow)
+- @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/milestone-archive.md (archive template)
   </execution_context>
 
 <context>

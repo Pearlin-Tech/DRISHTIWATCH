@@ -1,4 +1,4 @@
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/response-language-directive.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/response-language-directive.md
 
 <purpose>
 Generate a post-session summary document capturing work performed, outcomes achieved, and estimated resource usage. Writes SESSION_REPORT.md to .planning/reports/ for human review and stakeholder sharing.

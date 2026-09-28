@@ -1,4 +1,4 @@
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/response-language-directive.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/response-language-directive.md
 
 <purpose>
 Surface Claude's assumptions about a phase before planning, enabling users to correct misconceptions early.

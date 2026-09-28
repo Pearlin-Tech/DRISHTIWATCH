@@ -1,4 +1,4 @@
-.evidence-container {
+.evidence-page-container {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -8,7 +8,7 @@
   display: flex;
 }
 
-.evidence-main-content {
+.evidence-page-content {
   flex: 1;
   margin-left: 90px;
   padding: 32px 48px;
@@ -235,7 +235,7 @@
 }
 
 @media (max-width: 768px) {
-  .evidence-main-content {
+  .evidence-page-content {
     margin-left: 0;
     padding: 24px;
     padding-bottom: 100px; /* For mobile nav */

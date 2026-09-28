@@ -40,7 +40,7 @@ Granular flags are composable: `--discuss --research --validate` gives the same 
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/quick.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/quick.md
 </execution_context>
 
 <context>

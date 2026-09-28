@@ -18,7 +18,7 @@ Closes the plan → execute → verify → ship loop.
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/ship.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/ship.md
 </execution_context>
 
-Execute the ship workflow from @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/ship.md end-to-end.
+Execute the ship workflow from @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/ship.md end-to-end.
