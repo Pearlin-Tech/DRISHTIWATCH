@@ -14,6 +14,10 @@ const DB_DIR = path.join(__dirname, 'server-data');
 app.use(cors());
 app.use(express.json());
 
+import { initEE, getCompareData, healthCheck } from './server-gee.js';
+// Try initializing EE in background
+initEE().catch(console.error);
+
 import fs from 'fs';
 if (!fs.existsSync(DB_DIR)) {
   fs.mkdirSync(DB_DIR, { recursive: true });
@@ -88,6 +92,32 @@ const deleteRow = (table, id) => {
     });
   });
 };
+
+// Earth Engine Health Check
+app.get('/api/compare/health', async (req, res) => {
+  try {
+    const health = await healthCheck();
+    res.json(health);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Compare endpoint — passes full params to Earth Engine service
+app.post('/api/compare', async (req, res) => {
+  try {
+    const { baselineDate, currentDate, coords, bounds, indicator } = req.body;
+    if (!baselineDate || !currentDate || !coords) {
+      return res.status(400).json({ status: 'error', code: 'INVALID_REQUEST', message: 'Missing baselineDate, currentDate, or coords' });
+    }
+    
+    const result = await getCompareData({ baselineDate, currentDate, coords, bounds, indicator });
+    res.json(result);
+  } catch (error) {
+    console.error('Compare API Error:', error);
+    res.status(500).json({ status: 'error', code: 'SERVER_ERROR', message: error.toString() });
+  }
+});
 
 // GET all items for a resource (or the settings object)
 app.get('/api/:resource', async (req, res) => {

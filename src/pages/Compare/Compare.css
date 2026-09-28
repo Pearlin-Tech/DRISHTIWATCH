@@ -104,7 +104,8 @@
   position: absolute;
   bottom: var(--spacing-6);
   left: 120px;
-  right: 420px; /* Leave space for result panel */
+  right: 420px;
+  /* Leave space for result panel */
   z-index: 20;
   padding: 16px 24px;
   border-radius: 12px;

@@ -11,6 +11,7 @@ export default function MapViewport({
   hoverCoords,
   setHoverCoords,
   markerCoords,
+  tileUrl,
   children 
 }) {
   const mapContainer = useRef(null);
@@ -30,9 +31,9 @@ export default function MapViewport({
           sources: {
             satellite: {
               type: 'raster',
-              tiles: ['https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'],
+              tiles: [tileUrl || 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'],
               tileSize: 256,
-              attribution: 'Google'
+              attribution: 'Sentinel-2'
             }
           },
           layers: [
@@ -106,6 +107,28 @@ export default function MapViewport({
       }
     }
   }, [markerCoords]);
+
+  useEffect(() => {
+    if (!map.current || !map.current.isStyleLoaded()) return;
+    const newTiles = tileUrl ? [tileUrl] : ['https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'];
+    
+    if (map.current.getLayer('satellite-layer')) map.current.removeLayer('satellite-layer');
+    if (map.current.getSource('satellite')) map.current.removeSource('satellite');
+    
+    map.current.addSource('satellite', {
+      type: 'raster',
+      tiles: newTiles,
+      tileSize: 256
+    });
+    
+    map.current.addLayer({
+      id: 'satellite-layer',
+      type: 'raster',
+      source: 'satellite',
+      minzoom: 0,
+      maxzoom: 22
+    });
+  }, [tileUrl]);
 
   return (
     <div className={`map-container ${hoverCoords ? 'crosshair-active' : ''}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
