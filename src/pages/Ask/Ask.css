@@ -37,6 +37,70 @@
   max-width: 640px;
 }
 
+/* Draw area invite card */
+.draw-invite {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 20px;
+  background: rgba(10, 12, 16, 0.82);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,240,255,0.06);
+}
+
+.draw-invite-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.draw-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 10px 18px;
+  font-size: 0.8rem;
+}
+
+/* Drawing hint bar */
+.draw-hint {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: rgba(10, 12, 16, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+/* Area selected chip in query composer */
+.area-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 10px;
+  font-size: 0.75rem;
+}
+
+
 .query-composer {
   position: relative;
   width: 100%;
@@ -276,3 +340,60 @@
   z-index: 40;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
 }
+
+/* Draggable floating evidence panel */
+.evidence-floating {
+  background: rgba(10, 12, 16, 0.95);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+
+/* Drag handle bar */
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+  border-radius: inherit;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Resize handle — bottom-right corner */
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  cursor: se-resize;
+  background: linear-gradient(135deg, transparent 50%, rgba(0, 240, 255, 0.4) 50%);
+  border-radius: 0 0 12px 0;
+}
+
+.resize-handle:hover {
+  background: linear-gradient(135deg, transparent 50%, rgba(0, 240, 255, 0.7) 50%);
+}
+
+/* Override result-panel to allow fixed positioning from JS */
+.result-panel {
+  border-radius: 14px;
+  background: rgba(10, 12, 16, 0.92);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+
