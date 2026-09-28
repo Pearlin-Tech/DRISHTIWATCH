@@ -38,6 +38,7 @@
 }
 
 .query-composer {
+  position: relative;
   width: 100%;
   padding: var(--spacing-4);
   border-radius: 24px;
@@ -45,13 +46,38 @@
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.query-composer.drag-active {
+  border-color: #00f0ff !important;
+  background: rgba(0, 240, 255, 0.08) !important;
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.25);
+}
+
+.drop-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 16, 0.92);
+  border: 2px dashed #00f0ff;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #00f0ff;
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  z-index: 30;
+  pointer-events: none;
 }
 
 .query-form {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 16px;
+  gap: 10px;
+  padding: 8px 14px;
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -61,6 +87,61 @@
 .query-form:focus-within {
   border-color: rgba(37, 99, 235, 0.5);
   background: rgba(0, 0, 0, 0.4);
+}
+
+.attach-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.attach-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.attached-file-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.attachment-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.attachment-icon-fallback {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 10px;
 }
 
 .query-input {

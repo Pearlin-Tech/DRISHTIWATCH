@@ -22,9 +22,9 @@ Flow: Select Framework → Research Docs → Research Domain → Design Eval Str
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/ai-integration-phase.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ai-frameworks.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ai-evals.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/ai-integration-phase.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ai-frameworks.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ai-evals.md
 </execution_context>
 
 <context>

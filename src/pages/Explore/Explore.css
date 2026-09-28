@@ -343,15 +343,21 @@
   box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
 }
 
-/* --- Location Inspector --- */
+/* --- Location Inspector (Info-Only Card) --- */
 .location-inspector {
   position: absolute;
   bottom: var(--spacing-6);
   left: 450px;
-  z-index: 15;
-  width: 320px;
-  padding: var(--spacing-6);
+  z-index: 30;
+  width: 290px;
+  padding: 16px 20px;
   border-radius: 12px;
+  pointer-events: auto;
+}
+
+.location-inspector button {
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .close-btn {
@@ -371,68 +377,156 @@
   margin-bottom: 4px;
 }
 
-/* --- AI Assistant Panel --- */
-.ai-assistant-panel {
-  position: absolute;
-  bottom: var(--spacing-8);
-  right: 80px; /* clear zoom controls */
-  z-index: 20;
-  width: 360px;
-  padding: var(--spacing-6);
-  border-radius: 12px;
-}
-
-.suggestion-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  padding: 8px 12px;
-  border-radius: 6px;
-  color: var(--text-primary);
-  transition: all 0.2s;
-}
-
-.suggestion-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.ai-input-wrapper {
-  display: flex;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  padding: 4px;
-  margin-top: 16px;
-}
-
-.ai-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  padding: 8px 12px;
-  outline: none;
-}
-
-.ai-submit {
-  background: var(--accent-blue);
-  color: white;
-  width: 32px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Floating AI Button */
 .floating-ai-btn {
   position: absolute;
   bottom: var(--spacing-8);
   right: 80px;
-  z-index: 10;
+  z-index: 30;
   border-radius: 24px;
   padding: 12px 24px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* --- Draggable AI Copilot Floating Window --- */
+.ai-copilot-window {
+  position: fixed;
+  z-index: 1000;
+  width: 440px;
+  height: 580px;
+  max-height: calc(100vh - 40px);
+  max-width: calc(100vw - 32px);
+  background: rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(37, 99, 235, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ai-copilot-window.dragging {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 45px rgba(59, 130, 246, 0.45);
+  border-color: rgba(59, 130, 246, 0.6);
+  user-select: none;
+  cursor: grabbing !important;
+}
+
+.copilot-header-handle {
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  background: rgba(8, 11, 20, 0.95);
+  transition: background 0.2s ease;
+}
+
+.copilot-header-handle:active,
+.ai-copilot-window.dragging .copilot-header-handle {
+  cursor: grabbing !important;
+  background: rgba(15, 23, 42, 0.98);
+}
+
+.segmented-control {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.control-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.control-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.copilot-context-strip {
+  background: rgba(6, 9, 17, 0.9);
+}
+
+/* Scrollbar and chat message container */
+.copilot-chat-body {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.copilot-chat-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.copilot-chat-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.copilot-chat-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.copilot-chat-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Prompt Pills */
+.quick-prompts-bar {
+  scrollbar-width: none;
+}
+
+.quick-prompts-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.prompt-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 5px 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 11px;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.prompt-chip:hover {
+  background: rgba(37, 99, 235, 0.25);
+  border-color: var(--accent-blue);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Composer */
+.copilot-composer {
+  background: rgba(8, 11, 20, 0.95);
+}
+
+.composer-input {
+  font-family: inherit;
+}
+
+.composer-input::placeholder {
+  color: rgba(156, 163, 175, 0.6);
+}
+
+/* Minimized Floating Pill */
+.copilot-minimized-pill {
+  background: rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(37, 99, 235, 0.3);
 }
 
 /* Flex utilities */

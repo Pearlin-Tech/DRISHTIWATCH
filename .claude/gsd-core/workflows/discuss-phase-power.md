@@ -1,4 +1,4 @@
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/response-language-directive.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/response-language-directive.md
 
 <purpose>
 Power user mode for discuss-phase. Generates ALL questions upfront into a JSON state file and an HTML companion UI, then waits for the user to answer at their own pace. When the user signals readiness, processes all answers in one pass and generates CONTEXT.md.

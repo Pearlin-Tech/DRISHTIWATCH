@@ -10,9 +10,9 @@ requires: [config, update]
 ---
 
 <objective>
-Manage the runtime skill surface without reinstall. Reads/writes `/Users/pearlindadhania/Desktop/SIH/.claude/.gsd-surface.json`
-(sibling to `/Users/pearlindadhania/Desktop/SIH/.claude/.gsd-profile`) and re-stages the active skills directory in place.
-Skill dirs live at `/Users/pearlindadhania/Desktop/SIH/.claude/skills/gsd-*/`.
+Manage the runtime skill surface without reinstall. Reads/writes `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/.gsd-surface.json`
+(sibling to `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/.gsd-profile`) and re-stages the active skills directory in place.
+Skill dirs live at `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/skills/gsd-*/`.
 
 Sub-commands: list · status · profile · disable · enable · reset
 </objective>
@@ -133,11 +133,11 @@ Valid cluster names: `core_loop`, `audit_review`, `milestone`, `research_ideate`
 ## runtimeConfigDir resolution
 
 The `runtimeConfigDir` for `applySurface` is the **base Claude config directory**
-(`~/.claude`), NOT the skills sub-directory (`/Users/pearlindadhania/Desktop/SIH/.claude/skills`).
+(`~/.claude`), NOT the skills sub-directory (`/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/skills`).
 
 This matches `installRuntimeArtifacts` and `uninstallRuntimeArtifacts`, which also
 receive `~/.claude` as `configDir`. The skill dirs themselves live at
-`/Users/pearlindadhania/Desktop/SIH/.claude/skills/gsd-*/` because the `claude global` layout has `destSubpath =
+`/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/skills/gsd-*/` because the `claude global` layout has `destSubpath =
 'skills'` — they are derived from `configDir`, not the root for it.
 
 ```bash
@@ -151,7 +151,7 @@ SCOPE="global"
 ```
 
 Surface state is stored at `${RUNTIME_CONFIG_DIR}/.gsd-surface.json`
-(i.e. `/Users/pearlindadhania/Desktop/SIH/.claude/.gsd-surface.json`).
+(i.e. `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/.gsd-surface.json`).
 
 All paths can be overridden by reading the `CLAUDE_CONFIG_DIR` env var if set.
 
@@ -164,9 +164,9 @@ All paths can be overridden by reading the `CLAUDE_CONFIG_DIR` env var if set.
 - Missing `surface.cjs` → prompt: "Run `npm i -g @opengsd/gsd-core` to reinstall GSD."
 
 <execution_context>
-Surface state file: `/Users/pearlindadhania/Desktop/SIH/.claude/.gsd-surface.json`
-Install profile marker: `/Users/pearlindadhania/Desktop/SIH/.claude/.gsd-profile`
-Skill dirs: `/Users/pearlindadhania/Desktop/SIH/.claude/skills/gsd-*/`
-Engine module: `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/bin/lib/surface.cjs`
-Cluster definitions: `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/bin/lib/clusters.cjs`
+Surface state file: `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/.gsd-surface.json`
+Install profile marker: `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/.gsd-profile`
+Skill dirs: `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/skills/gsd-*/`
+Engine module: `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/bin/lib/surface.cjs`
+Cluster definitions: `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/bin/lib/clusters.cjs`
 </execution_context>

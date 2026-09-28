@@ -30,9 +30,9 @@ Does not require prior new-project setup — auto-creates `.planning/spikes/` if
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/spike.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/spike-wrap-up.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ui-brand.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/spike.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/spike-wrap-up.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ui-brand.md
 </execution_context>
 
 

@@ -22,7 +22,7 @@ Routes to the pause-work workflow which handles:
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/pause-work.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/pause-work.md
 </execution_context>
 
 <context>
@@ -31,7 +31,7 @@ State and phase progress are gathered in-workflow with targeted reads.
 
 <process>
 If `--report` is in $ARGUMENTS:
-Read and execute `/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/session-report.md` end-to-end.
+Read and execute `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/session-report.md` end-to-end.
 
 **Follow the pause-work workflow**.
 

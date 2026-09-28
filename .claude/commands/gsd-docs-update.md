@@ -26,7 +26,7 @@ Flag handling rule:
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/docs-update.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/docs-update.md
 </execution_context>
 
 <context>

@@ -19,8 +19,8 @@ Produces EVAL-REVIEW.md with score, verdict, gaps, and remediation plan.
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/eval-review.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/ai-evals.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/eval-review.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/ai-evals.md
 </execution_context>
 
 <context>

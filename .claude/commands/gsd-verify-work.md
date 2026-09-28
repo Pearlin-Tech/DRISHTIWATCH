@@ -21,8 +21,8 @@ Output: {phase_num}-UAT.md tracking all test results. If issues found: diagnosed
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/verify-work.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/templates/UAT.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/verify-work.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/templates/UAT.md
 </execution_context>
 
 <context>

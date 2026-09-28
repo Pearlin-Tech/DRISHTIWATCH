@@ -33,9 +33,9 @@ Mode routing:
 </routing>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/settings.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/settings-advanced.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/settings-integrations.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/settings.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/settings-advanced.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/settings-integrations.md
 </execution_context>
 
 <context>

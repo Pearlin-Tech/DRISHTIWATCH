@@ -32,10 +32,10 @@ Mode routing:
 </routing>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/add-phase.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/insert-phase.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/remove-phase.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/edit-phase.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/add-phase.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/insert-phase.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/remove-phase.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/edit-phase.md
 </execution_context>
 
 <context>

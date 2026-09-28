@@ -25,7 +25,7 @@ Routes to the update workflow which handles:
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/update.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/update.md
 </execution_context>
 
 <flags>
@@ -44,6 +44,6 @@ Parse the first token of $ARGUMENTS:
 </process>
 
 <execution_context_extended>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/sync-skills.md
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/reapply-patches.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/sync-skills.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/reapply-patches.md
 </execution_context_extended>

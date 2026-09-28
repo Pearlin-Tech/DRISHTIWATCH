@@ -69,7 +69,7 @@ Each item disabled removes its schema from every subsequent turn for the rest of
 
 ### How to toggle
 
-The keys live in `.claude/settings.json` (project) or `/Users/pearlindadhania/Desktop/SIH/.claude/settings.json` (global) — **not** in `.planning/config.json`:
+The keys live in `.claude/settings.json` (project) or `/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/settings.json` (global) — **not** in `.planning/config.json`:
 
 ```json
 {
@@ -122,4 +122,4 @@ Plans should complete within ~50% context (not 80%). No context anxiety, quality
 
 **CONSIDER splitting:** >5 files total, natural semantic boundaries, context cost estimate exceeds 40% for a single plan. See `<planner_authority_limits>` for prohibited split reasons.
 
-See @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/planner-guidance.md for Granularity Calibration table (Coarse/Standard/Fine plans-per-phase).
+See @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/planner-guidance.md for Granularity Calibration table (Coarse/Standard/Fine plans-per-phase).

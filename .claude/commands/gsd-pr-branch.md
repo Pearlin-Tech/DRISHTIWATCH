@@ -19,7 +19,7 @@ changes that are irrelevant to code review.
 </objective>
 
 <execution_context>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/pr-branch.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/pr-branch.md
 </execution_context>
 
 <process>

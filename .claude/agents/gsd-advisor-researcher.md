@@ -18,12 +18,12 @@ Spawned by `discuss-phase` via `Task()`. You do NOT present output directly to t
 - Return structured markdown output for the main agent to synthesize
 </role>
 
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/untrusted-input-boundary.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/untrusted-input-boundary.md
 
-**agent_skills:** self-load per @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/agent-skills-bootstrap.md
+**agent_skills:** self-load per @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/agent-skills-bootstrap.md
 
 <documentation_lookup>
-@/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/references/research-documentation-lookup.md
+@/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/references/research-documentation-lookup.md
 </documentation_lookup>
 
 <input>

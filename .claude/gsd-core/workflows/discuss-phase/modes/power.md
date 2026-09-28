@@ -10,7 +10,7 @@ Apply response_language to all user-facing prose — narration between tool call
 ## Dispatch
 
 ```
-Read @/Users/pearlindadhania/Desktop/SIH/.claude/gsd-core/workflows/discuss-phase-power.md
+Read @/Users/jenshigol/Desktop/hackathon/DRISHTIWATCH/.claude/gsd-core/workflows/discuss-phase-power.md
 ```
 
 Execute it end-to-end. Do not continue with the standard interactive steps.
